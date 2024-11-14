@@ -1,4 +1,4 @@
-/*
+
 
 package io.bcn.springConference.view;
 
@@ -71,4 +71,3 @@ public class ConferenceView extends VerticalLayout {
     }
 
 }
-*/

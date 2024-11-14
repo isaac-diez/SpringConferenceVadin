@@ -32,6 +32,6 @@ public class Speaker {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "speaker")
+    @OneToMany(mappedBy = "mappedSpeaker")
     private List<Conference> conferences;
 }

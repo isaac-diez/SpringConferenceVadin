@@ -23,34 +23,36 @@ import java.util.UUID;
                 nullable = false)
         private UUID id;
 
-        @Column(nullable = false)
+        @Column(name = "date", nullable = false)
         private String date;
 
         @Column(name = "youtube_link")
         private String linkToYouTubeVideo;
 
-        @Column(nullable = false)
+        @Column(name = "title", nullable = false)
         private String title;
 
         @Column(name = "conference_name",
                 nullable = false)
         private String conferenceName;
 
-        @Column(columnDefinition = "TEXT")
+        @Column(name = "content")
         private String content;
 
+        @Column(name = "duration")
         private Integer duration;
 
+        @Column(name = "room")
         private String room;
 
         @ManyToOne
         @JoinColumn(name = "book_id",
                 nullable = false)
-        private Book book;
+        private Book mappedBook;
 
         @ManyToOne
         @JoinColumn(name = "speaker_id",
                 nullable = false)
-        private Speaker speaker;
+        private Speaker mappedSpeaker;
 
 }
