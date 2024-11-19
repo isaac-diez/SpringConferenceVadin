@@ -55,4 +55,6 @@ import java.util.UUID;
                 nullable = false)
         private Speaker mappedSpeaker;
 
-}
+        public void setName(String value) {
+        }
+    }

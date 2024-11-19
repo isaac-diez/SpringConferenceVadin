@@ -27,10 +27,10 @@ import jakarta.annotation.security.PermitAll;
 @PageTitle("Spring I/O Conference")
 public class MainLayout extends AppLayout {
 
-    //private final AuthenticationContext authenticationContext;
+    private final AuthenticationContext authenticationContext;
 
-    public MainLayout(/*AuthenticationContext authenticationContext) {
-        this.authenticationContext = authenticationContext;*/){
+    public MainLayout(AuthenticationContext authenticationContext) {
+        this.authenticationContext = authenticationContext;
         createHeader();
         createDrawer();
         addNavbarContent();
@@ -97,12 +97,12 @@ public class MainLayout extends AppLayout {
         viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE,
                 LumoUtility.Flex.GROW);
         // Check if a user is logged in
-        /*if (authenticationContext.isAuthenticated()) {
+        if (authenticationContext.isAuthenticated()) {
             var logout = new Button("Logout " + authenticationContext.getPrincipalName().orElse(""),
                     event -> {
-                        authenticationContext.logout();*/
+                        authenticationContext.logout();
                         getUI().ifPresent(ui -> ui.getPage().setLocation("/home"));
-                 //   });
+                    });
 
             var header = new Header(viewTitle/*, logout*/);
             header.addClassNames(LumoUtility.AlignItems.CENTER, LumoUtility.Display.FLEX,
@@ -115,4 +115,4 @@ public class MainLayout extends AppLayout {
 
 
     }
-//}
+}

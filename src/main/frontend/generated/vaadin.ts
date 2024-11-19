@@ -1,4 +1,4 @@
-import 'Frontend/generated/jar-resources/copilot.js';
+import 'Frontend/generated/jar-resources/copilot/copilot.js';
 // @ts-ignore
 if (import.meta.hot) {
   // @ts-ignore

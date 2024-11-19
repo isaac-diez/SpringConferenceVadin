@@ -1,6 +1,6 @@
 package io.bcn.springConference.view;
 
-import com.vaadin.flow.component.Component;
+/*import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -231,5 +231,72 @@ public class ConferenceView extends VerticalLayout {
     // Method to refresh the grid
     private void refreshGrid() {
         grid.setItems(conferenceRepository.findAll());
+    }
+
+ */
+
+
+
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import io.bcn.springConference.model.Conference;
+import io.bcn.springConference.repository.ConferenceRepository;
+
+import jakarta.annotation.security.PermitAll;
+
+
+@AnonymousAllowed
+@PermitAll
+@Route(value = "conferences", layout = MainLayout.class)
+public class ConferenceView extends VerticalLayout {
+    private final ConferenceRepository repository;
+    private Grid<Conference> grid;
+    private TextField nameField;
+    private DatePicker datePicker;
+
+    public ConferenceView(ConferenceRepository repository) {
+        this.repository = repository;
+        createGrid();
+        createForm();
+        add(grid, createFormLayout());
+    }
+
+
+
+    private void createGrid() {
+        grid = new Grid<>(Conference.class);
+        grid.setColumns("name", "date");
+        updateList();
+    }
+
+    private void createForm() {
+        nameField = new TextField("Name");
+        datePicker = new DatePicker("Date");
+        Button saveButton = new Button("Save", e -> saveConference());
+        // Add form components and logic
+    }
+
+    private void saveConference() {
+        Conference conference = new Conference();
+        conference.setName(nameField.getValue());
+        conference.setDate(String.valueOf(datePicker.getValue()));
+        repository.save(conference);
+        updateList();
+        clearForm();
+    }
+
+    private void updateList() {
+        grid.setItems(repository.findAll());
+    }
+
+    private void clearForm() {
+        nameField.clear();
+        datePicker.clear();
     }
 }
